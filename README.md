@@ -1,6 +1,18 @@
 Golint is a linter for Go source code.
 
-[![Build Status](https://travis-ci.org/golang/lint.svg?branch=master)](https://travis-ci.org/golang/lint)
+## Building Golint for Scoir
+In the `lint/` root directory, run the following commands:
+
+    . ./lint.sh
+    go get github.com/golang/lint/golint
+    go get golang.org/x/tools/go/gcexportdata
+    mkdir -p src/github.com/golang/lint
+    cp lint.go src/github.com/golang/lint/
+    cp -R golint/ src/
+    go build -o bin/golint golint
+
+Copy the golint artifact generated in the `lint/bin/` directory into the bin
+of the project you want to run golint on.
 
 ## Installation
 
