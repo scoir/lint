@@ -14,6 +14,9 @@ In the `lint/` root directory, run the following commands:
 Copy the golint artifact generated in the `lint/bin/` directory into the bin
 of the project you want to run golint on.
 
+Don't forget to add the path to the project's `Project GOPATH` setting in
+IntelliJ/Goland.
+
 ## Installation
 
 Golint requires Go 1.6 or later.
