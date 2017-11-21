@@ -192,7 +192,7 @@ type file struct {
 func (f *file) isTest() bool { return strings.HasSuffix(f.filename, "_test.go") }
 
 func (f *file) lint() {
-	f.lintPackageComment()
+	//f.lintPackageComment()
 	f.lintImports()
 	f.lintBlankImports()
 	f.lintExported()
@@ -489,7 +489,7 @@ func (f *file) lintExported() {
 	var lastGen *ast.GenDecl // last GenDecl entered.
 
 	// Set of GenDecls that have already had missing comments flagged.
-	genDeclMissingComments := make(map[*ast.GenDecl]bool)
+	//genDeclMissingComments := make(map[*ast.GenDecl]bool)
 
 	f.walk(func(node ast.Node) bool {
 		switch v := node.(type) {
@@ -501,7 +501,7 @@ func (f *file) lintExported() {
 			lastGen = v
 			return true
 		case *ast.FuncDecl:
-			f.lintFuncDoc(v)
+			//f.lintFuncDoc(v)
 			if v.Recv == nil {
 				// Only check for stutter on functions, not methods.
 				// Method names are not used package-qualified.
@@ -515,12 +515,12 @@ func (f *file) lintExported() {
 			if doc == nil {
 				doc = lastGen.Doc
 			}
-			f.lintTypeDoc(v, doc)
+			//f.lintTypeDoc(v, doc)
 			f.checkStutter(v.Name, "type")
 			// Don't proceed inside types.
 			return false
 		case *ast.ValueSpec:
-			f.lintValueSpecDoc(v, lastGen, genDeclMissingComments)
+			//f.lintValueSpecDoc(v, lastGen, genDeclMissingComments)
 			return false
 		}
 		return true
@@ -1605,10 +1605,10 @@ func isPkgDot(expr ast.Expr, pkg, name string) bool {
 	return ok && isIdent(sel.X, pkg) && isIdent(sel.Sel, name)
 }
 
-func isZero(expr ast.Expr) bool {
-	lit, ok := expr.(*ast.BasicLit)
-	return ok && lit.Kind == token.INT && lit.Value == "0"
-}
+//func isZero(expr ast.Expr) bool {
+//	lit, ok := expr.(*ast.BasicLit)
+//	return ok && lit.Kind == token.INT && lit.Value == "0"
+//}
 
 func isOne(expr ast.Expr) bool {
 	lit, ok := expr.(*ast.BasicLit)
